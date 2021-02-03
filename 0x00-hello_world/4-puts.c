@@ -1,13 +1,13 @@
 #include <stdio.h>
 /**
  * main - To put my main function
- * @Mystr: The string to be printed
+ * Return: A string
  */
 int main(void)
 {
-    char Mystr[] = "\"Programming is like building a multilingual puzzle";
+	char Mystr[] = "\"Programming is like building a multilingual puzzle";
 
-    puts(Mystr);
+	puts(Mystr);
 
-    return (0);
+	return (0);
 }
