@@ -15,11 +15,11 @@ int main(void)
 
 	l_d = n % 10;
 
-	if (last_digit > 5)
+	if (l_d > 5)
 	{
 		printf("Last digit of %d is %d and is greater than 5\n", n, l_d);
 	}
-	else if (last_digit == 0)
+	else if (l_d == 0)
 	{
 		printf("Last digit of %d is %d and is 0\n", n, l_d);
 	}
