@@ -19,10 +19,10 @@ int main(void)
 				for (m = j; m <= 9; m++)
 				{
 					if (i != k || j != m)
-				        {
+					{
 						putchar('0' + i);
 
-					        putchar('0' + j);
+						putchar('0' + j);
 
 						putchar(' ');
 
