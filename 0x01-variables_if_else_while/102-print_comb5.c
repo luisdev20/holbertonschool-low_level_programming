@@ -29,12 +29,12 @@ int main(void)
 						putchar('0' + k);
 
 						putchar('0' + m);
+					}
 
-						if (i != 9 || j != 8 || k != 9 || m != 9)
-						{
-							putchar(',');
-							putchar(' ');
-						}
+					if ((i != k || j != m) && (i != 9 || j != 8 || k != 9 || m != 9))
+					{
+						putchar(',');
+						putchar(' ');
 					}
 				}
 			}
