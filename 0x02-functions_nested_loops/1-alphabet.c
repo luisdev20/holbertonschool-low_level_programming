@@ -4,15 +4,16 @@
  * main - This programm prints the alphabet in lowercase.
  * Return: returning 0
  */
-int main(void)
+void print_alphabet(void)
 {
-	int i;
-	char word[10] = {'H', 'o', 'l', 'b', 'e', 'r', 't', 'o', 'n', '\n'};
+	char i;
+	int _putchar(char c);
 
-	for (i = 0; i <= 9; i++)
+	for (i = 'a'; i <= 'z'; i++)
 	{
-		_putchar(word[i]);
+		_putchar(i);
 	}
+	_putchar('\n');
 
 	return (0);
 }
