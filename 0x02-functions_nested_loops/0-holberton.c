@@ -1,10 +1,11 @@
-#include "holberton.h"
+#include <unistd.h>
 /**
  * main - This programm prints the alphabet in lowercase.
  * Return: returning 0
  */
 int main(void)
 {
+	int _putchar(char c);
 	int i;
 	char word[10] = {'H', 'o', 'l', 'b', 'e', 'r', 't', 'o', 'n', '\n'};
 
