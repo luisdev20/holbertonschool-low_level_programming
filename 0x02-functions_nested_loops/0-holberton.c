@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include "holberton.h"
 /**
  * main - This programm prints the alphabet in lowercase.
