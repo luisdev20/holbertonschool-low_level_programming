@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include "holberton.h"
 /**
- * print_alphabet - This programm prints the alphabet in lowercase.
+ * print_alphabet_x10 - This programm prints the alphabet in lowercase x10.
  * Return: returning 0
  */
 void print_alphabet_x10(void)
