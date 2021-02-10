@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <unistd.h>
 #include "holberton.h"
 /**
  * print_times_table - This programm prints the n times table, starting with 0.
@@ -19,9 +17,7 @@ void print_times_table(int n)
 			for (b = 0; b <= n; b++)
 			{
 				if (b == 0)
-				{
 					_putchar('0');
-				}
 				else if (a * b > 99)
 				{
 					_putchar('0' + (a * b) / 100);
@@ -46,9 +42,7 @@ void print_times_table(int n)
 					_putchar(' ');
 				}
 				else
-				{
 					_putchar('\n');
-				}
 			}
 		}
 	}
