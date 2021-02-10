@@ -8,13 +8,13 @@
 int main(void)
 {
 	int i;
-	int t1 = 1;
-	int t2 = 2;
-	int next_term;
+	long t1 = 1;
+	long t2 = 2;
+	long next_term;
 
 	for (i = 1; i <= 50; i++)
 	{
-		printf("%d", t1);
+		printf("%ld", t1);
 		next_term = t1 + t2;
 		t1 = t2;
 		t2 = next_term;
