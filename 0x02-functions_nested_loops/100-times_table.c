@@ -25,7 +25,7 @@ void print_times_table(int n)
 				else if (a * b > 99)
 				{
 					_putchar('0' + (a * b) / 100);
-					_putchar('0' + ((a * b) % 100)/ 10);
+					_putchar('0' + ((a * b) % 100) / 10);
 					_putchar('0' + (a * b) % 10);
 				}
 				else if (a * b > 9)
