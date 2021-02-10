@@ -20,33 +20,36 @@ void print_times_table(int n)
 			{
 				if (b == 0)
 				{
-					printf("0");
+					_putchar('0');
 				}
 				else if (a * b > 99)
 				{
-					printf("%d", a * b);
+					_putchar('0' + (a * b) / 100);
+					_putchar('0' + ((a * b) % 100)/ 10);
+					_putchar('0' + (a * b) % 10);
 				}
 				else if (a * b > 9)
 				{
-					printf(" %d", a * b);
+					_putchar(' ');
+					_putchar('0' + (a * b) / 10);
+					_putchar('0' + (a * b) % 10);
 				}
 				else if (a * b <= 9)
 				{
-					printf("  %d", a * b);
+					_putchar(' ');
+					_putchar(' ');
+					_putchar(a * b + '0');
 				}
 				if (b != n)
 				{
-					printf(", ");
+					_putchar(',');
+					_putchar(' ');
 				}
 				else
 				{
-					printf("\n");
+					_putchar('\n');
 				}
 			}
 		}
-	}
-	else
-	{
-		printf("\n");
 	}
 }
