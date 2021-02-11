@@ -1,11 +1,11 @@
 #include <unistd.h>
 #include "holberton.h"
 /**
- * print_numbers - This programm that prints 10 times the numbers, from 0 to 14
+ * more_numbers - This programm that prints 10 times the numbers, from 0 to 14
  *
  * Return: no returning
  */
-void print_numbers(void)
+void more_numbers(void)
 {
 	int i;
 
