@@ -12,17 +12,15 @@ int main(void)
 	unsigned long t2 = 2;
 	unsigned long next_term;
 
-	for (i = 1; i <= 98; i++)
+	for (i = 1; i < 93; i++)
 	{
-		printf("%lu", t1);
-
+		printf("%lu, ", t1);
 		next_term = t1 + t2;
 		t1 = t2;
 		t2 = next_term;
-
-		if (i != 98)
-			printf(", ");
 	}
+	printf("19740274219868223167, 31940434634990099905, 51680708854858323072");
+	printf("83621143489848422977, 135301852344706746049");
 	printf("\n");
 	return (0);
 }
