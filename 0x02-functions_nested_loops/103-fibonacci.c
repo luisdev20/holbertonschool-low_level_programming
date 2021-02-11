@@ -9,7 +9,7 @@ int main(void)
 {
 	long t1 = 1;
 	long t2 = 2;
-	long next_term;
+	long next_term = 0;
 	long sum_even = 2;
 
 	while (next_term <= 4000000)
