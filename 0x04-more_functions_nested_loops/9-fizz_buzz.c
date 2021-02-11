@@ -6,7 +6,6 @@
  * But for multiples of three print Fizz instead of the number and
  * For the multiples of five print Buzz.
  * For numbers which are multiples of both three and five print FizzBuzz.
- * @size: Inserts the size of the square
  *
  * Return: return 0
  */
