@@ -11,7 +11,7 @@ int main(void)
 	long num = 612852475143;
 	long divisor = 2;
 
-	while (divisor < num )
+	while (divisor < num)
 	{
 		if (num % divisor == 0)
 			num = num / divisor;
