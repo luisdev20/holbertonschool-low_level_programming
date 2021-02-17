@@ -14,7 +14,7 @@ void puts_half(char *str)
 	while (str[c] != '\0')
 		c++;
 
-	len = c - 1;
+	len = c;
 	par = len / 2;
 	impar = (len - 1) / 2;
 
@@ -25,7 +25,7 @@ void puts_half(char *str)
 	}
 	else
 	{
-		for (i = len - impar; i <= len; i++)
+		for (i = len - impar + 1; i <= len; i++)
 			_putchar(str[i]);
 	}
 	_putchar('\n');
