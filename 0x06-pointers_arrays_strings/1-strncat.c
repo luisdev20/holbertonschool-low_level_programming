@@ -3,7 +3,7 @@
  * _strncat - This function concatenates two strings.
  * @dest: pointer to buffer point.
  * @src: pointer to string point.
- * @n: 
+ * @n: number os chars.
  *
  * Return: returning a char.
  */
