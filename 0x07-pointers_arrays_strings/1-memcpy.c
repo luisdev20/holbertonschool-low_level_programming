@@ -1,8 +1,8 @@
 #include "holberton.h"
 /**
- * _memset - Function that fills memory with a constant byte.
- * @s: pointer to a char.
- * @b: constant byte.
+ * _memcpy - Function that fills memory with a constant byte.
+ * @src: pointer to a char.
+ * @dest: constant byte.
  * @n: number of bytes to be filled.
  *
  * Return: returning a pointer to a char.
