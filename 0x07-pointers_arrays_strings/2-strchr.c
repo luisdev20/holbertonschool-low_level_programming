@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include "holberton.h"
 /**
  * _strchr - Function that fills memory with a constant byte.
