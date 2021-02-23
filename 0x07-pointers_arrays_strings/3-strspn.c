@@ -1,6 +1,6 @@
 #include "holberton.h"
 /**
- * _strchr - Function that gets the len_sgth of a prefix substring.
+ * _strspn - Function that gets the len_sgth of a prefix substring.
  * @s: pointer to a char.
  * @accept: constant byte.
  *
@@ -8,21 +8,29 @@
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	int i, j;
+	int len_s, len_accept, i, j;
 	unsigned int sum;
 
-	sum = 0;
-
-	for (i = 0; accept[i] != '\0'; i++)
+	sum = 0, len_s = 0, len_accept = 0;
+	while (s[len_s] != '\0')
 	{
-		for (j = 0; s[j] != '\0'; j++)
+		len_s++;
+	}
+	while (accept[len_accept] != '\0')
+	{
+		len_accept++;
+	}
+
+	for (i = 0; i <= len_accept; i++)
+	{
+		for (j = 0; j <= len_s; j++)
 		{
 			if (accept[i] == s[j])
 			{
-				sum ++;
+				sum++;
 				break;
 			}
 		}
 	}
-	return (sum + 1);
+	return (sum);
 }
