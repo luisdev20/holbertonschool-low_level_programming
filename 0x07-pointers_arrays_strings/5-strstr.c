@@ -7,30 +7,23 @@
  *
  * Return: returning a pointer to a char.
  */
-int compare(const char *haystack, const char *needle);
-
 char *_strstr(char *haystack, char *needle)
 {
-	while (*haystack != '\0')
+	while (*haystack)
 	{
-		if ((*haystack == *needle) && compare(haystack, needle))
-			return (haystack);
-		haystack++;
-	}
+		char *Begin = haystack;
+		char *pattern = needle;
 
+		while (*haystack && *pattern && *haystack == *pattern)
+		{
+			haystack++;
+			pattern++;
+		}
+
+		if (!*pattern)
+			return (Begin);
+
+		haystack = Begin + 1;
+	}
 	return (NULL);
-}
-
-int compare(const char *haystack, const char *needle)
-{
-	while (*haystack && *needle)
-	{
-		if (*haystack != *needle)
-			return (0);
-
-		haystack++;
-		needle++;
-	}
-
-	return (*needle == '\0');
 }
