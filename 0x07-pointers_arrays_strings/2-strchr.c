@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdlib.h>
 /**
  * _strchr - Function that fills memory with a constant byte.
  * @s: pointer to a char.
@@ -20,5 +21,5 @@ char *_strchr(char *s, char c)
 			return (&temp[i]);
 		}
 	}
-	return (0);
+	return (NULL);
 }
