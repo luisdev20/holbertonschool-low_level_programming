@@ -8,29 +8,25 @@
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	int len_s, len_accept, i, j;
-	unsigned int sum;
+	unsigned int i,j;
+	i = 0;
 
-	sum = 0, len_s = 0, len_accept = 0;
-	while (s[len_s] != '\0')
+	while(*(s + i))
 	{
-		len_s++;
-	}
-	while (accept[len_accept] != '\0')
-	{
-		len_accept++;
-	}
-
-	for (i = 0; i <= len_accept; i++)
-	{
-		for (j = 0; j <= len_s; j++)
+		j = 0;
+		while(*(accept + j))
 		{
-			if (accept[i] == s[j])
+			if(*(s + i) == *(accept + j))
 			{
-				sum++;
 				break;
 			}
+			j++;
 		}
+		if(!*(accept + j))
+		{
+			return i;
+		}
+		i++;
 	}
-	return (sum);
+	return i;
 }
