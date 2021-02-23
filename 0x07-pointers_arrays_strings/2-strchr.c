@@ -11,6 +11,9 @@ char *_strchr(char *s, char c)
 	int i, len;
 	char *temp = s;
 
+	if (s == '\0')
+		return (0);
+
 	for (len = 0; temp[len] != '\0'; len++)
 
 	for (i = 0; i < len; i++)
