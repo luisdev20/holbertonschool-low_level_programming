@@ -7,6 +7,24 @@
  *
  * Return: an int.
  */
+int _sqrt(int i, int n);
+
+int _sqrt_recursion(int n)
+{
+	int h;
+	int i = n;
+
+	h = _sqrt(i, n);
+	return (h);
+}
+
+/**
+ * _sqrt - Function to calculate sqrt recusive
+ * @n: base number
+ * @i: base number that iterate.
+ *
+ * Return: an int.
+ */
 int _sqrt(int i, int n)
 {
 	if (i < 0)
@@ -16,13 +34,4 @@ int _sqrt(int i, int n)
 		return (i);
 
 	return (_sqrt(i - 1, n));
-}
-
-int _sqrt_recursion(int n)
-{
-	int h;
-	int i = n;
-
-	h = _sqrt(i, n);
-	return (h);
 }
