@@ -1,4 +1,5 @@
 #include "holberton.h"
+int _sqrt(int i, int n);
 /**
  * _sqrt_recursion - F that returns the natural square root of a number.
  * @n: base number
