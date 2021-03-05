@@ -23,7 +23,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 	filler = array;
 
-	for (i = 0; i < nmemb; i++)
+	for (i = 0; i < size * nmemb; i++)
 		filler[i] = '\0';
 
 	return (array);
