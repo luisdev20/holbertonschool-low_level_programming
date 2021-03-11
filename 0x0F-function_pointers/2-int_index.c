@@ -4,7 +4,7 @@
  * int_index - Function that searches for an integer.
  * @array: array
  * @size: size of the array
- * @cmp pointer to the function you need to use.
+ * @cmp: pointer to the function you need to use.
  *
  * Return: always void.
  */
