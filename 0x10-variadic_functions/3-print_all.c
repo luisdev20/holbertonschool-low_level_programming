@@ -11,6 +11,7 @@
 void print_char(va_list arg)
 {
 	char letter;
+
 	letter = va_arg(arg, int);
 	printf("%c", letter);
 }
@@ -24,6 +25,7 @@ void print_char(va_list arg)
 void print_int(va_list arg)
 {
 	int number;
+
 	number = va_arg(arg, int);
 	printf("%d", number);
 }
@@ -37,6 +39,7 @@ void print_int(va_list arg)
 void print_float(va_list arg)
 {
 	float decimal;
+
 	decimal = va_arg(arg, double);
 	printf("%f", decimal);
 }
@@ -50,6 +53,7 @@ void print_float(va_list arg)
 void print_string(va_list arg)
 {
 	char *string;
+
 	string = va_arg(arg, char*);
 
 	if (string == NULL)
