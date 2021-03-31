@@ -32,23 +32,25 @@ int main(int argc, char **argv)
 	from = open(argv[1], O_RDONLY);
 	numread = read(from, buff, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (from == -1 || numread == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		free(buff);
-		exit(98);
-	}
 
-	numwrite = write(to, buff, numread);
-	if (to == -1 || numwrite == -1)
-	{
-                dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		free(buff);
-		exit(99);
-	}
+	do {
+		if (from == -1 || numread == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			free(buff);
+			exit(98);
+		}
+		numwrite = write(to, buff, numread);
+		if (to == -1 || numwrite == -1)
+		{
+                	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			free(buff);
+			exit(99);
+		}
 
-	numwrite = read(from, buff, 1024);
-	to = open(argv[2], O_WRONLY | O_APPEND);
+		numwrite = read(from, buff, 1024);
+		to = open(argv[2], O_WRONLY | O_APPEND);
+	} while (numwrite > 0);
 
 	free(buff);
 	c = close(from);
