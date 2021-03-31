@@ -11,9 +11,9 @@
  *         file_to cannot be creates or written - exit code 99.
  *         file_from or file_to cannot be closed - exit code 100.
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int from, to, numread, numwrite, c;
+	int from, to, numread, numwrite, c, d;
 	char *buff;
 
 	if (argc != 3)
@@ -59,11 +59,11 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", from);
 		exit(100);
 	}
-	c = close(to);
-	if (c == -1)
+	d = close(to);
+	if (d == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fc %d\n", to);
 		exit(100);
 	}
-	return(0);
+	return (0);
 }
