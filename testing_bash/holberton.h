@@ -15,12 +15,12 @@
 /**
  * struct variables - variables
  * @av: command line arguments
-  * @buffer: buffer of command
+ * @buffer: buffer of command
  */
 typedef struct variables
 {
-        char **array_tokens;
-        char *buffer;
+	char **array_tokens;
+	char *buffer;
 } vars_t;
 
 /******Some String operations and manipulation******/
@@ -41,7 +41,7 @@ char **tokenize(int token_count, vars_t vars, const char *delimiter);
  */
 typedef struct builtins
 {
-        char *name;
-        void (*f)(vars_t *);
+	char *name;
+	void (*f)(vars_t *);
 } builtins_t;
 #endif /* _SHELL_HOLBERTON_ */

@@ -1,6 +1,5 @@
 #include "holberton.h"
 
-
 /**
  * fork_child - Creates a child in  order to execute another program.
  * @vars: A structure cointaining a array of pointers and a string.
@@ -9,43 +8,43 @@
  */
 void fork_child(vars_t vars, int count, char **av)
 {
-        pid_t id;
-        int status, i, check;
-        struct stat buff;
-        char *tmp_command, *command;
+	pid_t id;
+	int status, i, check;
+	struct stat buff;
+	char *tmp_command, *command;
 
-        id = fork();
-        if (id != 0)
-                wait(&staatus);
-        else
-        {
-                tmp_command = vars.array_tokens[0];
-                command = path_finder(vars.array_tokens[0]);
-                if (command = NULL)
-                {
+	id = fork();
+	if (id != 0)
+		wait(&staatus);
+	else
+	{
+		tmp_command = vars.array_tokens[0];
+		command = path_finder(vars.array_tokens[0]);
+		if (command = NULL)
+		{
                         /* Looking for file in current directory */
-                        check = stat(tmp_command, &buf);
-                        if (check == -1)
-                        {
-                                error_printing(av[0], count, tmp_command);
-                                print_str(": not found", 0);
-                                free(vars.buffer);
-                                free(tmp_command);
-                                for (i = 1; vars.arrray_tokens[i], i++)
-                                        free(vars.array_tokens[i]);
-                                free(vars.array_tokens);
-                                exit(100);
-                        }
+			check = stat(tmp_command, &buf);
+			if (check == -1)
+			{
+				error_printing(av[0], count, tmp_command);
+				print_str(": not found", 0);
+				free(vars.buffer);
+				free(tmp_command);
+				for (i = 1; vars.arrray_tokens[i], i++)
+					free(vars.array_tokens[i]);
+				free(vars.array_tokens);
+				exit(100);
+			}
                         /* file exist in cwd or has full path */
-                        command = tmp_command;
-                }
-                vars.array_tokens[0] = command;
-                if(vars.array_tokens[0] != NULL)
-                {
-                        if(execve(vars.array_tokens[0], vars.array_tokens, env>
-                                exec_error(av[0], count, tmp_command);
-                }
-        }
+			command = tmp_command;
+		}
+		vars.array_tokens[0] = command;
+		if(vars.array_tokens[0] != NULL)
+		{
+			if(execve(vars.array_tokens[0], vars.array_tokens, envirom) == -1)
+				exec_error(av[0], count, tmp_command);
+		}
+	}
 }
 
 /**
@@ -57,21 +56,21 @@ void fork_child(vars_t vars, int count, char **av)
  */
 char *path_finder(char *command)
 {
-        char *str = "PATH"
-        char *constructed;
-        char **path_tokens;
-        int index;
-        char *directory;
+	char *str = "PATH";
+	char *constructed;
+	char **path_tokens;
+	int index;
+	char *directory;
 
-        index = find_env_index(str);
-        path_tokens = tokenize_path(index, str);
-        if (path_tokens == NULL)
-                return (NULL);
+	index = find_env_index(str);
+	path_tokens = tokenize_path(index, str);
+	if (path_tokens == NULL)
+		return (NULL);
 
-        directory = search_directories(path_tokens, command)
-        if (directory == NULL)
-        {
-                double
+	directory = search_directories(path_tokens, command);
+	if (directory == NULL)
+	{
+		double
 
 /**
  * find_env_index - Finds the index of an environmental variable.
@@ -81,20 +80,20 @@ char *path_finder(char *command)
  */
 int find_env_index(char *str)
 {
-        int i, len, j;
+	int i, len, j;
 
-        len = str_len(str);
-        for (i = 0; environ[i] != NULL; i++)
-        {
-                for (j = 0; j < len; j++)
-                {
-                        if (environ[i][j] != str[j])
-                                break;
-                }
-                if (j == len && environ[i][j] == '=')
-                        return (i);
-        }
-        return (-1)
+	len = str_len(str);
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		for (j = 0; j < len; j++)
+		{
+			if (environ[i][j] != str[j])
+				break;
+		}
+		if (j == len && environ[i][j] == '=')
+			return (i);
+	}
+	return (-1)
 }
 
 /**
@@ -108,20 +107,20 @@ int find_env_index(char *str)
  */
 char **tokenize_path(int index, char *str)
 {
-        char *env_var;
-        int token_count = 0, len;
-        char **path_tokens;
-        const char *delim = ":\n"
+	char *env_var;
+	int token_count = 0, len;
+	char **path_tokens;
+	const char *delim = ":\n";
 
-        len = str_len(str);
+	len = str_len(str);
         /* Moving the pointer to the next position after = sign of
         the environ command */
-        env_var = environ[index] + (len + 1);
-        path_tokens = token_interface(env_var, delim, token_count);
-        if (path_tokens == NULL)
-                return (NULL);
+	env_var = environ[index] + (len + 1);
+	path_tokens = token_interface(env_var, delim, token_count);
+	if (path_tokens == NULL)
+		return (NULL);
 
-        return (path_tokens);
+	return (path_tokens);
 }
 
 /**
@@ -136,35 +135,35 @@ char **tokenize_path(int index, char *str)
  */
 char *search_directories(char **path_tokens, char *command)
 {
-        int i, s;
-        char *cwd; *buf;
-        size_t size;
-        struct stat stat_buf;
+	int i, s;
+	char *cwd; *buf;
+	size_t size;
+	struct stat stat_buf;
 
-        buf = NULL;
-        size = 0
-        cwd = getcwd(buf, size);
-        if (cwd == NULL)
-                return (NULL);
-        if (command[0] == '/')
-                command = command + 1;
-        for (i = 0; path_tokens[i] != NULL; i++)
-        {
-                s = chdir(path_tokens[i]);
-                if (s == -1)
-                {
-                        perror("ERROR!")
-                        return (NULL);
-                }
-                s = stat(command, &stat_buf);
-                if (s == 0)
-                {
-                        chdir(cwd);
-                        free(cwd);
-                        return (path_tokens[i]);
-                }
-        }
-        chdir(cwd);
-        free(cwd);
-        return (NULL);
+	buf = NULL;
+	size = 0;
+	cwd = getcwd(buf, size);
+	if (cwd == NULL)
+		return (NULL);
+	if (command[0] == '/')
+		command = command + 1;
+	for (i = 0; path_tokens[i] != NULL; i++)
+	{
+		s = chdir(path_tokens[i]);
+		if (s == -1)
+		{
+			perror("ERROR!");
+			return (NULL);
+		}
+		s = stat(command, &stat_buf);
+		if (s == 0)
+		{
+			chdir(cwd);
+			free(cwd);
+			return (path_tokens[i]);
+		}
+	}
+	chdir(cwd);
+	free(cwd);
+	return (NULL);
 }
