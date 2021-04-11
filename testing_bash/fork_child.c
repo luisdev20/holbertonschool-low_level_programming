@@ -10,17 +10,17 @@ void fork_child(vars_t vars, int count, char **av)
 {
 	pid_t id;
 	int status, i, check;
-	struct stat buff;
+	struct stat buf;
 	char *tmp_command, *command;
 
 	id = fork();
 	if (id != 0)
-		wait(&staatus);
+		wait(&status);
 	else
 	{
 		tmp_command = vars.array_tokens[0];
 		command = path_finder(vars.array_tokens[0]);
-		if (command = NULL)
+		if (command == NULL)
 		{
                         /* Looking for file in current directory */
 			check = stat(tmp_command, &buf);
@@ -30,7 +30,7 @@ void fork_child(vars_t vars, int count, char **av)
 				print_str(": not found", 0);
 				free(vars.buffer);
 				free(tmp_command);
-				for (i = 1; vars.arrray_tokens[i], i++)
+				for (i = 1; vars.array_tokens[i]; i++)
 					free(vars.array_tokens[i]);
 				free(vars.array_tokens);
 				exit(100);
@@ -41,7 +41,7 @@ void fork_child(vars_t vars, int count, char **av)
 		vars.array_tokens[0] = command;
 		if(vars.array_tokens[0] != NULL)
 		{
-			if(execve(vars.array_tokens[0], vars.array_tokens, envirom) == -1)
+			if(execve(vars.array_tokens[0], vars.array_tokens, environ) == -1)
 				exec_error(av[0], count, tmp_command);
 		}
 	}
@@ -59,7 +59,7 @@ char *path_finder(char *command)
 	char *str = "PATH";
 	char *constructed;
 	char **path_tokens;
-	int index;
+	int index, i;
 	char *directory;
 
 	index = find_env_index(str);
@@ -70,7 +70,24 @@ char *path_finder(char *command)
 	directory = search_directories(path_tokens, command);
 	if (directory == NULL)
 	{
-		double
+		for (i = 0; path_tokens[i] != NULL; i++)
+			free(path_tokens[i]);
+		free(path_tokens);
+		return (NULL);
+	}
+	constructed = build_path(directory, command);
+	if (constructed == NULL)
+	{
+		for (i = 0; path_tokens[i] != NULL; i++)
+			free(path_tokens[i]);
+		free(path_tokens);
+		return (NULL);
+	}
+	for (i = 0; path_tokens[i] != NULL; i++)
+		free(path_tokens[i]);
+	free(path_tokens);
+	return (constructed);
+}
 
 /**
  * find_env_index - Finds the index of an environmental variable.
@@ -93,7 +110,7 @@ int find_env_index(char *str)
 		if (j == len && environ[i][j] == '=')
 			return (i);
 	}
-	return (-1)
+	return (-1);
 }
 
 /**
@@ -113,8 +130,7 @@ char **tokenize_path(int index, char *str)
 	const char *delim = ":\n";
 
 	len = str_len(str);
-        /* Moving the pointer to the next position after = sign of
-        the environ command */
+
 	env_var = environ[index] + (len + 1);
 	path_tokens = token_interface(env_var, delim, token_count);
 	if (path_tokens == NULL)
@@ -136,7 +152,7 @@ char **tokenize_path(int index, char *str)
 char *search_directories(char **path_tokens, char *command)
 {
 	int i, s;
-	char *cwd; *buf;
+	char *cwd, *buf;
 	size_t size;
 	struct stat stat_buf;
 

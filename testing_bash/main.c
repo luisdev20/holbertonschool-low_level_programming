@@ -2,10 +2,6 @@
 #include <signal.h>
 #define SHELLNAME "Mishell $ "
 
-void parse_line(vars_t vars, size_t len_buffer, int command_counter, char **av>
-char **token_interface(vars_t vars, const char *delimiter, int token_count);
-int count_token(vars_t vars, const char *delimiter);
-
 int main(__attribute__((unused)) int ac, char **av)
 {
 	size_t len_buffer;
@@ -43,16 +39,16 @@ void parse_line(vars_t vars, size_t len_buffer, int command_counter, char **av)
 	}
 	else
 	{
-		vars.array_tokens = token_interface(vars, delimiter, token_count);
+		vars.array_tokens = token_interface(vars.buffer, delimiter, token_count);
 		if (vars.array_tokens[0] == NULL)
 		{
 			free(vars.array_tokens);
 			free(vars.buffer);
 			return;
 		}
-		i = built_in(vars.array_tokens, vars.buffer);
+		i = built_in(vars);
 		if (i == -1)
-			create_child(vars.array_tokens, vars.buffer, command_counter, av);
+			fork_child(vars, command_counter, av);
 		for (i = 0; vars.array_tokens[i] != NULL; i++)
 			free(vars.array_tokens[i]);
 		free(vars.array_tokens);
@@ -60,31 +56,33 @@ void parse_line(vars_t vars, size_t len_buffer, int command_counter, char **av)
 	}
 }
 
-char **token_interface(vars_t vars, const char *delimiter, int token_count)
+char **token_interface(char *line, const char *delimiter, int token_count)
 {
-	token_count = count_token(vars, delimiter);
+	vars_t vars;
+
+	token_count = count_token(line, delimiter);
 	if (token_count == -1)
 	{
-		free(vars.buffer);
+		free(line);
 		return (NULL);
 	}
-	vars.array_tokens = tokenize(token_count, vars, delimiter);
+	vars.array_tokens = tokenize(token_count, line, delimiter);
 	if (vars.array_tokens == NULL)
 	{
-		free(vars.buffer);
+		free(line);
 		return (NULL);
 	}
 
 	return(vars.array_tokens);
 }
 
-int count_token(vars_t vars, const char *delimiter)
+int count_token(char *line, const char *delimiter)
 {
 	char *str;
 	char *token;
 	int i;
 
-	str = _strdup(vars.buffer);
+	str = _strdup(line);
 	if (str == NULL)
 		return (-1);
 	token = strtok(str, delimiter);
