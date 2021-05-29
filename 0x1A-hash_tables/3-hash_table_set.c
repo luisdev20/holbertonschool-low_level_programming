@@ -4,7 +4,7 @@
  * @ht: the hash table you want to add or update the key/value to
  * @key: s the key. key can not be an empty string.
  * @value: is the value associated with the key.
- *         value must be duplicated. value can be an empty string.
+ *
  * Return: 1 if it succeeded, 0 otherwise
  *
  * Description: In case of collision, add the new node at the
@@ -19,15 +19,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (ht == NULL || key == NULL || key == '\0' || value == NULL)
 		return (0);
-
 	value_copy = strdup(value);
 	if (value_copy == NULL)
 		return (0);
-
 	index = key_index((const unsigned char *)key, ht->size);
 
-	/* If key already exists at given index, free value and copy new one */
-	for (i = index; ht->array[i]; i++)
+	for (i = index; ht->array[i]; i++) /* existing key at given index */
 	{
 		if (strcmp(ht->array[i]->key, key) == 0)
 		{
@@ -37,8 +34,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		}
 	}
 
-	/* If index collision occurs and key is different, create a new node */
-	new = malloc(sizeof(hash_node_t));
+	new = malloc(sizeof(hash_node_t)); /* new key in same index */
 	if (new == NULL)
 	{
 		free(value_copy);
@@ -49,7 +45,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (new->key == NULL)
 	{
 		free(new);
-		return(0);
+		return (0);
 	}
 
 	new->value = value_copy;
